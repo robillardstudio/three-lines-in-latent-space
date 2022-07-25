@@ -1,6 +1,10 @@
 _Read this in [English](https://github.com/kaugrv/models_words/blob/main/README_EN.md)_
 
-# Des modèles et des mots – Trois lignes dans un espace latent
+//////////////////////// 
+Des modèles et des mots
+////////////////////////
+
+# Trois lignes dans un espace latent
 
 Gaëtan Robillard, Des mots et des modèles (série), 2022 – projet éditorial soutenu par l'ESIPE et la formation IMAC, Université Gustave Eiffel.  
 Inclus dans la série issue de ce projet, « Trois lignes dans un espace latent » est un répertoire conçu par Gaëtan Robillard avec l'aide de Wendy Gervais.

@@ -1,25 +1,26 @@
-_Read this in [English](https://github.com/kaugrv/models_words/blob/main/README_EN.md)_
+_[En](https://github.com/kaugrv/models_words/blob/main/README_EN.md)_
 
-//////////////////////// 
-Des modèles et des mots
-////////////////////////
+# Des modèles et des mots (série)
+
+Des Modèles et des Mots (Models and Words) est une série de publications dédiée à un ensemble de conversations sur le Computer Art et l'intelligence artificielle éditées par Gaëtan Robillard. La série entend présenter des entretiens avec Margit Rosen, Frieder Nake, Jérôme Nika, Véra Molnar, et Kazushi Mukaiyama. Les textes s'accompagnent d'une série d'images et de la diffusion d'un modèle d'apprentissage profond.
+
+Le projet éditorial est soutenu par l'ESIPE et la formation IMAC (Université Gustave Eiffel).
 
 # Trois lignes dans un espace latent
-
-Gaëtan Robillard, Des mots et des modèles (série), 2022 – projet éditorial soutenu par l'ESIPE et la formation IMAC, Université Gustave Eiffel.  
-Inclus dans la série issue de ce projet, « Trois lignes dans un espace latent » est un répertoire conçu par Gaëtan Robillard avec l'aide de Wendy Gervais.
-Remerciements : Vincent Nozick  
-Le code utilisé pour le WGAN est issu de l'ouvrage _Generative Deep Learning_ de David Foster (O’Reilly).
+  
+Gaëtan Robillard et Wendy Gervais.
 
 ## Avant-propos
 
-_Des Modèles et des Mots_ s'inscrit dans un projet de recherche en art et en deep learning génératif. Le code présenté ici soutient un travail exploratoire sur les GANs (Generative Adversarial Networks, ou Réseaux antagonistes génératifs). Ces modèles d'architecture sont établis depuis quelques années dans la recherche informatique, employés pour produire des médias de synthèse à partir de large base de données d'images. Ce support est pensé en tant qu'environnement de travail ou *framework*, base à compléter et à explorer, pour quiconque souhaiterait découvrir, façonner ou critiquer ce type de modèle dans un contexte de recherche et d'expérimentation visuelle.
+_Des Modèles et des Mots_ s'inscrit dans un projet de recherche en art et en deep learning génératif. Le code présenté ici soutient un travail exploratoire sur les GANs (Generative Adversarial Networks, ou Réseaux antagonistes génératifs)[^21]. Ces modèles d'architecture sont établis depuis quelques années dans la recherche informatique, employés pour produire des médias de synthèse à partir de large base de données d'images. Ce support est pensé en tant qu'environnement de travail ou *framework*, base à compléter et à explorer, pour quiconque souhaiterait découvrir, façonner ou critiquer ce type de modèle dans un contexte de recherche et d'expérimentation visuelle.
 
 Les GANs sont le plus souvent envisagés pour la production automatisée des images, en employant des données d'entraînement à partir de photographies ou de dessins produits à la main – des données observées dans le réel, où bien souvent, la figuration prévaut sur l'abstraction. Dans le cas présenté ici, nous nous intéressons principalement à des données d'entrainement qui sont des données de synthèse, c'est à dire des données générées par un algorithme par le truchement de variables aléatoires, en référence au champ du Computer Art[^1]. À ceci s'ajoute une recherche sur le temps et le mouvement, tels que ces constituants apparaîssent en potentiel dans l'exploration de l'espace latent[^2] d'un GAN. L'une des perspectives proposées ici est bien la création de séquences d'images nouvelles, issues de fonctions de parcour dans l'espace ou la « vision » du modèle entraîné.
 
 Principalement écrits en Python, et avec le support de trois Notebooks Jupyter distincts (Training, Inference, Inference+), le code est commenté de façon à guider le profane à travers le différentes partie du framework. Autant que possible, les aspects visuels de la démarche sont mis en avant : les données d'entraînement, l'architecture du GAN et les résultats. [Les trois Notebooks](https://github.com/kaugrv/models_words/tree/main/notebooks) expliqués ci-après sont utilisables dans un environnement local (Anaconda, ... voir [Generative Deep Drawing](https://github.com/leogenot/DeepDrawing) pour la configuration), mais sont également pré-configurés sur [Google Colaboratory](https://colab.research.google.com/drive/12WCzKlR--V8E7HMZHJ89nobVDCknCKmE#scrollTo=C7vmECVpwSZm), qui ne requiert aucune installation préablable et est adapté à l'exécution. 
 
 D'une façon générale, l'apprentissage profond est un sujet technique complexe – du fait de la très grande dimension des architectures inhérente aux modèles d'apprentissage profond (le terme de boîte noire est un terme adapté pour expliquer ce problème). Tout en réfléchissant à la lisibilité de ces modèles, c'est l'exploration artistique et pédagogique qui constitue la motivation essentielle de la démarche présentée ici.
+
+[^21]: Le modèle de GAN présenté ici a été adapté à partir de l'ouvrage _Generative Deep Learning_ de David Foster (O’Reilly).
 
 [^1]: Le Computer Art est entendu ici comme un champ iconographique à part entière, caractérisable par de nombreuses références à l'abstraction géométrique, à l'art conceptuel, et événetuellement au minimalisme. L'utilisation de l'aléatoire dans le Computer Art et son inscription dans le courant de l'esthétique générative est tout aussi notable. 
 

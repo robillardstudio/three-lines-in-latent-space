@@ -1,0 +1,11 @@
+tensorflow-directml
+tensorflow-addons
+notebook
+pydot
+ipykernel
+matplotlib
+pandas
+imageio
+graphviz
+scipy
+opencv-python

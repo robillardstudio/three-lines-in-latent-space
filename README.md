@@ -207,7 +207,7 @@ On peut ensuite télécharger l'ensemble de ces images au format zip, à l'aide 
 
 ------------------------------------
 
-Notebook [Inference +](https://colab.research.google.com/drive/13g3rX2zgyxT5YKTZILBrISybmLJ4_pXi) sur Google Colab.
+Notebook [Inference +](https://colab.research.google.com/drive/14oww73GEQrECNtgaj8iK78jSw8GtHIiE?usp=sharing) sur Google Colab.
 
 ------------------------------------
 

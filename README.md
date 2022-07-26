@@ -1,7 +1,7 @@
 -----------------------------------
 
-Des modèles et des mots
-========================
+Des modèles et des mots : Trois lignes dans un espace latent
+=============================================================
 
 ***Des Modèles et des Mots* est une série de publications dédiée à un ensemble de conversations sur le Computer Art et l'intelligence artificielle éditées par Gaëtan Robillard. La série entend présenter des entretiens avec Margit Rosen, Frieder Nake, Jérôme Nika, Véra Molnar, et Kazushi Mukaiyama. Les textes s'accompagnent d'une série d'images et de la diffusion d'un modèle d'apprentissage profond.**
 
@@ -10,11 +10,7 @@ Fr | [En](https://github.com/robillardstudio/three-lines-in-latent-space/blob/ma
 
 -----------------------------------
 
-**Modèle**
-
-# Trois lignes dans un espace latent
-  
-Gaëtan Robillard et Wendy Gervais.
+**Modèle** : Gaëtan Robillard et Wendy Gervais.
 
 ## Avant-propos
 

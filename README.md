@@ -20,7 +20,7 @@ Le code présenté ici soutient un travail exploratoire sur les GANs (Generative
 
 Le plus souvent, les GANs sont entraînés à partir de grandes quantités de photographies ou de dessins produits à la main – des données observées dans le réel. Les images sont figuratives. La philosophie du deep learning génératif semble s'accompagne d'un naturalisme qu'il faut remettre en cause. Qu'en est-il de l'abstraction géométrique[^22]? Et qu'en est-il des images déjà produites par un code ? Nous nous intéressons ici à des données d'entraînement qui sont des données de synthèse – des données générées par un algorithme et par le truchement de variables aléatoires – en référence au champ du Computer Art[^1]. À cette démarche s'ajoute une recherche sur l'image en mouvement, telle qu'elle apparaît en potentiel dans l'exploration de l'espace latent[^2] d'un GAN. L'une des perspectives du modèle est bien la création de séquences d'images nouvelles, issues de fonctions de parcours dans l'espace ou la « vision » du modèle entraîné.
 
-Principalement écrit en Python, décomposé en trois Notebooks distincts : Training, Inference, Inference+ – le code est commenté de façon à guider le profane à travers les différentes parties du *framework*. Les trois Notebooks présentés plus bas ont été configurés sur [Google Colaboratory](https://colab.research.google.com/drive/12WCzKlR--V8E7HMZHJ89nobVDCknCKmE#scrollTo=C7vmECVpwSZm), (aucune installation requise), et sont également exploitables dans un environnement local [^23].
+Principalement écrit en Python, décomposé en trois Notebooks distincts : Training, Inference, Inference+ – le code est commenté de façon à guider le profane à travers les différentes parties du *framework*. Les trois Notebooks présentés plus bas ont été configurés sur Google Colaboratory (aucune installation requise), et sont également exploitables dans un environnement local sous Jupyter[^23].
 
 D'une façon générale, l'apprentissage profond est un sujet technique complexe – notamment du fait de la très grande dimension des réseaux de neurones (le terme de boîte noire est adapté pour désigner ce problème). Tout en réfléchissant à la lisibilité de ce type de modèle, c'est ici la recherche artistique et pédagogique qui doit être mise en avant. Autant que possible, les aspects visuels de la démarche sont présentés : les données d'entraînement, l'architecture du GAN et les résultats.
 
@@ -32,7 +32,7 @@ D'une façon générale, l'apprentissage profond est un sujet technique complexe
 
 [^22]: En faisant référence ici au _Projet Mondrian_ de Frieder Nake : « I had scanned all of the neoplastic images of Mondrian's, and had arranged them into a time sequence of Mondrian's painting. The idea then was to analyze them year by year, in all sorts of statistical directions. Out of this, I wanted to develop a predictory system that would predict and create the New York Boogie-Woogie! Outrageously optimistic! » Frieder Nake, « The Art of Being Precise: Frieder Nake in Conversation [With Margit Rosen] », ZKM, 2022. [https://www.youtube.com/watch?v=Z_pOiHX6HYE](https://www.youtube.com/watch?v=Z_pOiHX6HYE)
 
-[^23]: Par exemple dans environnement comme Anaconda. Pour l'installation des dépendances, Cf. [Generative Deep Drawing](https://github.com/leogenot/DeepDrawing)
+[^23]: Par exemple dans un environnement comme Anaconda. Pour l'installation des dépendances, Cf. [Generative Deep Drawing](https://github.com/leogenot/DeepDrawing)
 
 <!-- #### Fondations
 

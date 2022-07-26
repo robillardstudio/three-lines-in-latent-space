@@ -51,7 +51,7 @@ De plus, la base algorithmique de notre modèle a été explorée lors du projet
 
 Cet ensemble d'images constitue une seule et même classe. Chacune d'elles suit les mêmes règles de construction – elles sont détaillées ci-après, et est strictement dictée par l'execution du code. Cela en fait un dataset synthétique et algorithmique, comportant des images simples, chacune différente mais appartenant à un ensemble. Cette homogénéité relative sera utile pour entraîner notre réseau.
 
-Chaque image de notre dataset est au format 128 par 128 pixels. Sur fond noir, on génère 3 lignes d'épaisseur 5 pixels. On distingue une ligne verticale et deux horizontales. Leur position dans l'image est définie de façon aléatoire (loi uniforme ou loi gaussienne, selon). Leurs couleurs sont également aléatoires (loi uniforme sur [0,3]). Chacune des 3 lignes peut prendre la couleur suivante[^3] :
+Chaque image de notre dataset est au format 128 par 128 pixels. Sur fond noir, on génère 3 lignes d'épaisseur 5 pixels. On distingue une ligne verticale et deux horizontales. Leur position dans l'image est définie de façon aléatoire (loi uniforme ou loi gaussienne, selon). Leurs couleurs sont également aléatoires (loi uniforme sur [0,3]). Chacune des 3 lignes peut prendre l'une des couleurs suivantes [^3] :
 
 - blanc
 - jaune
@@ -66,7 +66,7 @@ $$ \prod_{i=1}^{3} (4 \times 128) = (4 \times 128)^3 = 134217728 $$
 
 c'est-à-dire 134 millions d'images possibles. En générant 10 000 d'entre elles, on couvre 0.007% d'images de la classe – autant dire que nous sommes certains de générer 10 000 images uniques. Ce dataset sera chargé lors de l'entraînement, à l'aide de le la fonction `load_dataset` de [loaders.py](https://github.com/kaugrv/models_words/blob/main/utils/loaders.py).
 
-[^3]: Les couleurs exactes choisies sont tirées du travail de Piet Mondrian (Cf. _Trafalgar Square_, Piet Mondrian, 1943 ; reproduction in _[Museum of Modern Art](https://www.moma.org/collection/works/79879)_). Voir également _Projet Mondrian_ de Frieder Nake : _"I had scanned all of the neoplastic images of Mondrian's, and had arranged them into a time sequence of Mondrian's painting. The idea then was to analyze them year by year, in all sorts of statistical directions. Out of this, I wanted to develop a predictory system that would predict and create the New York Boogie-Woogie! Outrageously optimistic!"._ Frieder Nake, Margit Rosen, « The Art of Being Precise: Frieder Nake in Conversation [With Margit Rosen] », ZKM, 2022. [https://www.youtube.com/watch?v=Z_pOiHX6HYE](https://www.youtube.com/watch?v=Z_pOiHX6HYE)
+[^3]: Les trois premières couleurs sont les couleurs primaires. Leurs valeurs numériques sont tirées du travail de Piet Mondrian (Cf. _Trafalgar Square_, Piet Mondrian, 1943 ; reproduction in _[Museum of Modern Art](https://www.moma.org/collection/works/79879)_). Voir également _Projet Mondrian_ de Frieder Nake : _"I had scanned all of the neoplastic images of Mondrian's, and had arranged them into a time sequence of Mondrian's painting. The idea then was to analyze them year by year, in all sorts of statistical directions. Out of this, I wanted to develop a predictory system that would predict and create the New York Boogie-Woogie! Outrageously optimistic!"._ Frieder Nake, Margit Rosen, « The Art of Being Precise: Frieder Nake in Conversation [With Margit Rosen] », ZKM, 2022. [https://www.youtube.com/watch?v=Z_pOiHX6HYE](https://www.youtube.com/watch?v=Z_pOiHX6HYE)
 
 ## Architecture
 
@@ -101,7 +101,15 @@ gan = WGANGP(input_dim=(IMAGE_SIZE, IMAGE_SIZE, 3),
              )
  ```
  
-La matrice de convolution choisie pour le générateur est de taille 10 x 10 : `generator_conv_kernel_size=[10,10,10,10]`. La convolution est ainsi relativement grande, de façon à ce que le générateur réponde à la qualité abstraites des images en considérant à une échelle globale. En revanche, le critique est associé à une matrice de convolution de taille inférieure, 5 x 5, avec `critic_conv_kernel_size=[5,5,5,5]`. Les images sont scorées par le critique via une convolution de niveau plus locale que le générateur. En somme, si le générateur tend à l'abstraction visuelle – la ligne, le critique porte son analyse dans les détails. Cette asymétrie micro-macro des matrices de convolution entre générateur et le critique résulte d'une interrogation forte quant à la capacité du réseau en matière d'abstraction visuelle.
+La matrice de convolution choisie pour le générateur est de taille 10 x 10 :
+
+`generator_conv_kernel_size=[10,10,10,10]`
+
+La convolution est ainsi relativement grande, de façon à ce que le générateur réponde à la qualité abstraites des images en considérant à une échelle globale. En revanche, le critique est associé à une matrice de convolution de taille inférieure, en taille 5 x 5 :
+
+`critic_conv_kernel_size=[5,5,5,5]`
+
+Les images sont scorées par le critique via une convolution de niveau plus locale que celle du générateur. En somme, si le générateur tend à l'abstraction visuelle – la ligne, le critique porte son analyse dans les détails. Cette asymétrie macro-micro des matrices de convolution entre générateur et critique résulte d'une interrogation forte quant à la capacité du réseau en matière d'abstraction visuelle.
 
 D'autres dimensions de la convolution pourraient être explorées en fonction de nouveaux datasets. Pour plus de détails sur la convolution, voir _[Convolution arithmetic](https://github.com/vdumoulin/conv_arithmetic)_.
 
@@ -109,26 +117,32 @@ D'autres dimensions de la convolution pourraient être explorées en fonction de
 
 ![Critique](https://user-images.githubusercontent.com/103901906/179565848-3a8334e6-1680-4085-9bad-cbcb81c8d142.png)
 
-_Représentations graphiques des layers constituant le générateur et le critique, réalisées avec l'outil NN-SVG d'[Alex LeNail](https://github.com/alexlenail/NN-SVG). On observe en 3D l'articulation des layers et leurs dimensions successives, en proportions réelles en haut à droite et arangées pour une meilleure lisibilité au centre._
+Ci-dessus : Représentations graphiques des couches constituant le générateur et le critique. Dans cette perspective, on observe l'articulation des couches et leurs dimensions successives, en condénsé (au centre) et en proportions réelles (en haut à droite). Rendu réalisé avec [NN-SVG](https://github.com/alexlenail/NN-SVG).
 
 ## Entraînement
 
-La partie effective de l'entraînement est exécutable dans le Notebook [Training](https://colab.research.google.com/drive/12WCzKlR--V8E7HMZHJ89nobVDCknCKmE#scrollTo=C7vmECVpwSZm) sur Google Colab.
+------------------------------------
 
-Après avoir cloné ce dépôt, on travaillera à sa racine, /models_words. Il est possible d'utiliser le dataset _lines_ décrit plus haut ou bien d'en utiliser un nouveau (en l'uploadant directement dans l'environnement Colab via une cellule ou en remplaçant le fichier data.zip). Au moins 10 000 images (format 128x128) sont conseillées, à placer dans un fichier data.zip_, mais selon la complexité des images, davantage seront peut-être nécessaires.
+Notebook [Training](https://colab.research.google.com/drive/12WCzKlR--V8E7HMZHJ89nobVDCknCKmE#scrollTo=C7vmECVpwSZm) sur Google Colab.
 
-Les premières cellules servent à charger le modèle et les bibliothèques, puis à charger le dataset. Il est possible de configurer les paramètres de l'entraînement, notamment le numéro de l'entraînement que l'on va lancer (`RUN_ID`), ou le `BATCH_SIZE`, c'est-à-dire le nombre d'images du dataset présentées au réseau lors d'une itération. Par défaut, il est paramétré à 16, l'augmenter rendra le temps de calcul plus long, mais peut permettre d'améliorer la précision de l'entraînement (garder une puissance de 2, comme 32, 64 ou 128). Après avoir chargé le dataset (celui-ci devrait bien renvoyer `Found ... images belonging to 1 classes.`) et paramétré le GAN (comme expliqué plus haut dans _Architecture_), d'autres paramètres de l'entraînement sont modifiables :
+------------------------------------
 
-* `EPOCHS` : le nombre d'expositions de l'entiereté du dataset au réseau neuronal. Il est généralement de l'ordre de 1000 époques, mais selon la complexité des images à analyser, il peut être inférieur ou supérieur.
-* `PRINT_EVERY_N_BATCHES` : au lieu de générer une image à toutes les époques, on peut choisir la fréquence d'enregistrement. Les images générées se trouveront dans run/gan, dans le dossier correspondant au numéro de l'entraînement. Par exemple, pour `EPOCHS = 1201` et `PRINT_EVERY_N_BATCHES = 100`) on obtiendra :
+Après avoir cloné ce dépôt, on travaillera à sa racine : `/models_words`. Il est possible d'utiliser le dataset _lines_ décrit plus haut ou bien d'en utiliser un nouveau (en le chargeant directement via une cellule  dans l'environnement Colab ou en remplaçant le fichier `data.zip`). Au moins 10 000 images (format 128x128) sont conseillées. Selon la complexité des images, davantage de données peuvent être nécessaires.
+
+Les premières cellules du Notebook servent à charger le modèle et les bibliothèques, puis à charger le dataset. Il est possible de configurer les paramètres de l'entraînement, notamment le numéro associé à l'entraînement (`RUN_ID`), ou le `BATCH_SIZE`, c'est-à-dire le nombre d'images du dataset présentées au réseau lors d'une itération de l'entraînement. Par défaut, le `BATCH_SIZE` est paramétré à 16. Augmenter cette taille rendra le temps de calcul plus long, mais permettra d'améliorer la précision du réseau (garder une puissance de 2, comme 32, 64 ou 128).
+
+D'autres paramètres de l'entraînement sont modifiables :
+
+- `EPOCHS` : le nombre de cycles d'expositions du réseau au dataset complet (un cycle est composé de n batchs). Pour ce modèle, le paramètre par défaut est de 1201 époques, mais selon la complexité des images à analyser, il peut être inférieur ou supérieur (jusqu'à 60 000 époques et plus).
+- `PRINT_EVERY_N_BATCHES` : au lieu de rendre et d'enregistrer une image ou output à chaque époque, on peut choisir une autre fréquence. Les images générées se trouveront dans le dossier `run/gan`, dans un sous dossier correspondant au numéro de l'entraînement. Par exemple, pour `EPOCHS = 1201` et `PRINT_EVERY_N_BATCHES = 100`) on obtiendra :
 
 ![Exemple samples](https://user-images.githubusercontent.com/103901906/176936405-c4fbce75-1ece-419f-a47e-5bd0e4547ef4.png)
 
-* `rows` et `columns` : chaque sample généré ne contient pas forcément une seule image générée par le réseau mais plutôt une grille d'images, afin d'observer l'évolution de l'apprentissage de manière globale. Par exemple, respectivement pour `rows = 5`, `columns = 5` et `rows = 2`, `columns = 2` :
+- `rows` et `columns` : au cours de l'entraînement le rendu est paramétré pour présenter une grille d'images générées par le réseau. Ces deux variables permettent de paramétrer la densité de la grille. Voici un exemple avec les valeur `rows = 5`, `columns = 5` et `rows = 2`, `columns = 2` :
 
 ![Exemple 5x5](https://user-images.githubusercontent.com/103901906/176937177-ef705ff3-603f-4fb1-9243-b15b1783b3a0.png) ![Exemple 2x2](https://user-images.githubusercontent.com/103901906/176937301-ef2df143-63bb-4dad-8ce9-86d777c364f6.png)
 
-Il est possible d'observer l'évolution de la perte (_loss_, c'est-à-dire la note attribuée par le critique aux images générées) textuellement au cours des passages :
+En sortie de l'entraînement, il est possible d'observer l'évolution de fonction de perte (*Loss*) du critique D et du générateur :
 
 ```
 ...
@@ -151,42 +165,56 @@ Il est possible d'observer l'évolution de la perte (_loss_, c'est-à-dire la no
 ...
 ```
 
-Nous pouvons aussi voir ces données de manière graphique, en générant une représentation de la convergence de l'entraînement :
-
+La progression de ces valeurs à travers l'entraînement peut également être observée sous forme graphique :
 
 <img src="https://user-images.githubusercontent.com/103901906/177615266-41ff49a0-16de-42bf-be11-5ed55a44dcc8.png" alt="Graphe" width="400"></img>
 <img src="https://user-images.githubusercontent.com/103901906/177614854-75bcd83a-f65f-429c-b229-ffcb1738e8f7.png" alt="Légende" width="200"></img>
 
+On peut ainsi analyser la convergence des deux _loss_ : ici par exemple, la différence moyenne entre les images observées (_real_, issues des données d'entraînement) et synthétiques (_fake_, générées par le générateur) tend vers 0 à partir d'environ 1100 époques. À ce stade de l'entraînement les images générées et les données d'entraînement sont évaluées à égalité par le critique. L'image de ce graphe est enregistrée dans `RUN_FOLDER+"/images/Converge.png"`.
 
+Dans le Notebook Colab, la cellule **Results** permet de télécharger l'ensemble des images issues de l'entraînement ; et le fichier generator.h5 – le modèle entraîné du générateur, indispensable pour la partie _Inference_. Notons qu'à la suite de l'entraînement, le critique n'a plus d'utilité [^31].
 
-On peut ainsi observer l'évolution de l'entraînement, et la convergence des _loss_ : ici par exemple, la différence en moyenne entre les images réelles (_real_, issues du _batch_) et fausses (_fake_, générées par le générateur) tend vers 0 à partir d'environ 1100 époques. C'est donc à ce stade que l'entraînement est devenu assez satisfaisant pour l'arrêter.
-
-L'image de ce graphe sera enregistrée avec les _samples_ en tant que _converge.png_. Finalement des cellules permettent pour un environnement Google Colab de télécharger premièrement toutes les images, et enfin le fichier generator.h5, le fichier du générateur du réseau lié à cet entraînement, qui sera indispensable pour la partie suivante : l'_Inference_.
+[^31]: Aussi curieux que cela puisse paraître, le critique n'a en effet de rôle que lors de l'entraînement. Il serait intéressant d'imaginer un nouvel emploi pour le critique qui est alors délaissé. Une piste de réflexion : dans *Artificial Aesthetics: a critical guide to media and design*, Lev Manovich et Emanuele Arielli proposent de considérer à égale importance la fonction analytique et générative d'un réseau de deep learning, la fonction analytique étant attribuée à une fonction d'évaluation esthétique des artefacts culturels.
 
 ## Inference
 
-La partie _Inference_ se donne pour objectif d'explorer _l'espace latent_, l'espace contenant les données interprétables par le réseau qui lui sera capable de générer les images, une fois que l'entraînement a été effectué avec le Notebook précédent. Il faudra pour cela se munir de fichier du générateur _generator.h5_ et utiliser le [second Notebook, "Inference"](https://colab.research.google.com/drive/13g3rX2zgyxT5YKTZILBrISybmLJ4_pXi), depuis Google Colaboratory.
+------------------------------------
 
-L'idée générale de cette exploration est d'étudier les images que le réseau est désormais capable de générer à l'issue de l'entraînement. En utilisant le fichier du générateur datant de la dernière époque de celui-ci, il va être possible de générer à l'envi de nouvelles images relevant de la même classe que les images générées par le réseau lors de la dernière époque. Il sera aussi possible de les étudier, et les _interpoler_ entre elles (c'est-à-dire introduire des vecteurs intermédiaires entre des vecteurs générés).
+Notebook [Inference](https://colab.research.google.com/drive/13g3rX2zgyxT5YKTZILBrISybmLJ4_pXi) sur Google Colab.
 
-Une première fonction `generate_latent_points` génère un ou plusieurs vecteurs 100 (on choisit le nombre de vecteurs en paramétrant `nb_vec`), aléatoires (ce vecteur contiendra 100 valeurs _float_ aléatoires comprises entre -3 et 3). On utilisera donc `latent_dim = 100` et `nb_vec`, le nombre de vecteurs choisi, passé en argument. Nous utilisons ici `nb_vec = 2`, car par la suite nous étudierons l'interpolation de deux images générées et d'éventuels vecteurs 100 supplémentaires seraient inutiles.
+Pour utiliser le réseau entraîné, il faut se munir du fichier _generator.h5_, voir partie précédente.
 
-La seconde fonction `interpolate_points` permet l'interpolation, c'est-à-dire de créer de nouveaux vecteurs se plaçant entre les deux vecteurs précédemment générés par le générateur. Si l'on interpole deux vecteurs (`nb_vec = 2`) avec une vingtaine d'autres (`nb_img = 20`) par exemple, il sera possible de créer une animation, en accolant les 20 images associées. Pour cela, la fonction `plot_generated` génère, enregistre et affiche toutes ces images.
+------------------------------------
+
+La partie _Inference_ se donne pour objectif de générer de nouvelles images par l'utilisation du modèle entraîné et par l'exploration de _l'espace latent_. Cet espace est un espace vectoriel (ici en dimension 100) représentant l'ensemble des informations interprétables par le modèle. L'idée générale de l'exploration est d'étudier les images que le réseau est désormais capable de générer.
+
+En utilisant le générateur entraîné, il va être possible de générer de nouvelles images relevant de la même catégorie que les images générées par le réseau lors de la dernière époque de son entraînement. Il sera possible de les étudier et de les _interpoler_ entre elles (c'est-à-dire d'introduire des vecteurs intermédiaires entre des vecteurs choisis).
+
+La première des fonctions, `generate_latent_points`, génère un ou plusieurs vecteurs 100 (on choisit le nombre de vecteurs à générer en paramétrant `nb_vec`). Chaque vecteur est déterminé par une fonction alétoire qui détermine 100 valeurs flottantes aléatoires comprises entre environ -3 et 3 (la distribution répond à une loi normale centrée ou *standard normal distribution*). Par défaut, on utilisera `latent_dim = 100` et `nb_vec`, et `nb_vec = 2`. Ensuite nous étudions l'interpolation entre deux vecteurs de façon à générer une séquence d'images.
+
+La seconde fonction `interpolate_points` permet l'interpolation, c'est-à-dire de créer de nouveaux vecteurs situés entre les deux vecteurs crées dans la fonction précédente. Si par exemple on interpole deux vecteurs avec 20 autres (`nb_img = 20`), il sera possible de créer alors une animation continue avec les 22 images correspondantes à chacun de ces vecteurs. Pour cela, la fonction `plot_generated` génère, enregistre et affiche toutes ces images.
 
 ![Animation 1](https://user-images.githubusercontent.com/103901906/177205129-48acd30e-9a0b-4f2b-8450-ea58f21e3d83.gif)
 
-Pour résumer, pour explorer et interpoler les points de l'espace latent et les images associées :
+En résumé, voici les trois étapes principales pour explorer et interpoler les points de l'espace latent et leurs images associées :
 
-* on génère un tableau `pts` de format (2,100) qui contient 2 vecteurs 100 avec la fonction `generate_latent_points`. On choisit le nombre de vecteurs avec de `nb_vec` -`nb_vec = 2` ici.
-* on interpole les deux premiers tableaux de `pts` avec `interpolate_points`, ce qui donne le nouveau tableau `interpolated`
-* on génère les images associées en passant le tableau `interpolated` en argument de `plot_generated`
-* sur Colab, on peut télécharger l'ensemble de ces images au format zip, à l'aide de la dernière cellule.
+1. avec la fonction `generate_latent_points`, on génère un tableau `pts` de format (2,100) qui contient 2 vecteurs 100 ; le nombre de vecteurs est choisit avec `nb_vec`
+2. avec la fonction `interpolate_points`, on interpole les deux premiers tableaux de `pts`, ce qui donne le nouveau tableau `interpolated`
+3. avec la fonction `plot_generated`, on génère les images associées en passant le tableau `interpolated` en argument
+
+On peut ensuite télécharger l'ensemble de ces images au format zip, à l'aide de la dernière cellule de la partie **Function**. La partie **Super Resolution** sera présentée plus bas.
 
 ## Inference +
 
-Pour aller plus loin, une seconde version du [Notebook, "Inference +"](https://colab.research.google.com/drive/14oww73GEQrECNtgaj8iK78jSw8GtHIiE), ajoute quelques fonctionnalités supplémentaires :
+------------------------------------
 
-* afficher le vecteur Z (vecteur 100 ici) sous la forme d'un images de 10x10 carrés, avec la fonction `printZ`. Exemples d'images générées avec la représentation du vecteur Z associé :
+Notebook [Inference +](https://colab.research.google.com/drive/13g3rX2zgyxT5YKTZILBrISybmLJ4_pXi) sur Google Colab.
+
+------------------------------------
+
+Pour aller plus loin, le Notebook Inference +, propose quelques fonctionnalités supplémentaires :
+
+- visualiser le vecteur Z (vecteur 100 ici) sous la forme d'un images de 10x10 carrés, avec la fonction `printZ` ; voici quelques exemples d'images produites par le générateur, accompagnées de la visualisation du vecteur Z associée :
 
 <img src="https://user-images.githubusercontent.com/103901906/178315771-00b5226d-bb5b-4c88-a091-59c70135336a.png" width="85"></img>
 <img src="https://user-images.githubusercontent.com/103901906/178315053-f114c50f-4e11-4750-9846-19002c30553a.png" width="128"></img>
@@ -197,26 +225,35 @@ Pour aller plus loin, une seconde version du [Notebook, "Inference +"](https://c
 <img src="https://user-images.githubusercontent.com/103901906/178316212-068b2a10-08f3-4601-a69c-dc89c242755b.png" width="85"></img>
 <img src="https://user-images.githubusercontent.com/103901906/178316192-73627c6d-faf6-4a06-9f5a-6600c61e43e7.png" width="128"></img>
 
-Attention cependant, l'échelle des couleurs est relative (un niveau de gris ne représentera pas la même valeur d'une représentation à une autre).
+Attention, dans cette visualisation, l'échelle des couleurs est relative (un niveau de gris ne représentera pas la même valeur d'une visualisation à une autre).
 
-* de là, étudier le vecteur Z et son influence sur la génération en n'utilisant plus `generate_latent_point` mais en fabriquant le tableau `pts` avec d'autres méthodes. Des exemples, certains animés, sont visibles dans [le dossier Z-anim](https://github.com/kaugrv/models_words/tree/main/Z-anim). Ici les valeurs ont été affichées pour donner une grille sous la forme d'une _heatmap_, on remarque d'ailleurs la relativité de l'échelle des couleurs : 
+- de là, étudier le vecteur Z et son influence sur les images produites en sortie, en laissant de côté la fonction initiale `generate_latent_point` (Cf. Inférence) mais en fabriquant un tableau (`pts`) avec d'autres méthodes ; les résultats d'une première étude en image fixe et en image animée sont disponibles dans le dossier `Z-anim`. Ici les valeurs ont été affichées pour donner une grille de proportion rectangulaire, accompagnées des valeurs numériques du vecteur (on remarque la relativité de l'échelle de gris) : 
 
 ![anim1](https://user-images.githubusercontent.com/103901906/179784656-8ac40368-075b-42d3-b950-da614857c4dc.gif)
 
+Deux autres fonctionnalités ont été ajoutées pour :
 
-* générer en nombre des images par paires _non interpolées_. Le nombre de paires est paramétrable avec `nb_inf`
-* exporter le vecteur Z associé à une paire de deux images dans un fichier texte. Ainsi, il sera possible d'importer les coordonnées d'un vecteur dans l'_Inference_ et donc d'obtenir de nouveau l'image associée (éventuellement les interpoler, les étudier...) en utilisant les _arrays_ exportés dans _Vec##.txt_
-
+- générer des images en quantité, et par paires _non interpolées_ ; le nombre de paires est paramétrable avec `nb_inf`
+- exporter dans un fichier texte les deux vecteurs Z associés à une paire de deux images ; il est alors possible d'importer les coordonnées d'un vecteur en tant qu'input du modèle, obtenir ainsi de nouveau l'image associée au vecteur donné
+  
+Ces deux fonctionnalité sont pensées pour de futures recherches.
 
 ## Super-résolution
 
-À l'issue de l'inférence, nous avons choisi d'améliorer la résolution de nos images interpolées, toujours grâce à un algorithme (écrit par Adrish Dey[^4]). La partie dédiée _Super Resolution_ se trouve dans le Notebook de l'Inference (et Inference +), à la suite de l'interpolation, pour être appliquée directement sur les images obtenues.
+------------------------------------
 
-On passe ainsi d'une image de 128x128 à une image de 512x512 (on multiplie les dimensions par 4) :
+Notebooks [Inference](https://colab.research.google.com/drive/13g3rX2zgyxT5YKTZILBrISybmLJ4_pXi) et [Inference +](https://colab.research.google.com/drive/13g3rX2zgyxT5YKTZILBrISybmLJ4_pXi)
 
-![Image originale](https://user-images.githubusercontent.com/103901906/177224935-3e7ec9c7-af83-490f-a78c-91088bfbff76.png) ![Super-résolution](https://user-images.githubusercontent.com/103901906/177224950-3936d167-81d9-44ca-9824-932b2aabdeb5.jpg)
+------------------------------------
 
-L'algorithme s'applique sur toutes les images obtenues par l'interpolation. La dernière cellule permet de télécharger ces images, en grande résolution, dans un fichier zip.
+Pour augmenter la résolution de images interpolées, nous proposon d'utiliser un modèle de deep learning entraîné et distribué par Tensorflow [^4]. Dans les deux notebooks en question, la partie **Super Resolution** s'applique directement sur les images obtenues en sortie du modèle.
+
+On passe ainsi d'une image de 128x128 à une image de 512x512 (la définition de l'image est multipliée par 4).
+
+![Image originale](https://user-images.githubusercontent.com/103901906/177224935-3e7ec9c7-af83-490f-a78c-91088bfbff76.png)
+![Super-résolution](https://user-images.githubusercontent.com/103901906/177224950-3936d167-81d9-44ca-9824-932b2aabdeb5.jpg)
+
+L'algorithme s'applique sur toutes les images issue de l'interpolation. La dernière cellule permet de télécharger les super-résolutions, dans un fichier zip.
 
 ![Animation Super-résolution](https://user-images.githubusercontent.com/103901906/177619339-3cf28dfd-ff00-4761-a659-66a02d5e5abe.gif)
 
@@ -224,21 +261,16 @@ L'algorithme s'applique sur toutes les images obtenues par l'interpolation. La d
 
 ## Résultats
 
-Pour conclure sur cette étude, nous pouvons observer les différences esthétiques entre les images de notre dataset synthétique _lines_ contenant 10 000 images, et les images et animations finales obtenues à travers l'oeil du GAN utilisé.
+Il est intéressant de comparer les images issues des données d'entraînement et les images générées par le modèle. Cette comparaison révèle des différences esthétiques importantes. Si les images d'origine contenaient des lignes nettes, unicolores, et toujours au nombre de 3 (deux horizontales et une verticale), les images générées augmentent ou diminuent ce nombre pour parfois faire apparaître jusqu'à 4 ou 5 lignes. Il y a une nouveauté géométrique et topologique. De plus, se dégage des résultats une impression de profondeur, dûe notamment à des contrastes clairs/obcsurs, pourtant absents des données d'entraînement.
 
-Si les images d'origine contenaient des lignes nettes, unicolores, toujours au nombre de 3 (deux horizontales et une verticale), les images obtenues au cours de l'entraînement du GAN font apparaître plus ou moins de lignes (d'une seule, à parfois 4 ou 5) - il y a donc introduction d'une nouveauté géométrique. Une impression de profondeur, de différents plans superposés, absente dans le dataset, semble également apparaître dans l'entraînement : des lignes semblent cachées dans l'obscurité et d'autres se trouver au premier plan.
-
-Certaines lignes semblent briller, évoquant des raies spectrales, et leur texture, légèrement bruitée et caractéristique des images générées par IA, apparaît, renforcée par la super-résolution. De nouvelles couleurs apparaissent (du orange, du bleu clair, du beige) ainsi que des dégradés, mais "tous" les mélanges ne se font pas (le bleu et le jaune originaux auraient pû donner du vert, ce qui n'a jamais été observé dans nos entraînements). Malgré ces innovations esthétiques itnroduites par le réseau, certaines demeurent très proches de celles du dataset.
+Certaines traces semblent plus lumineuses, évoquant des raies spectrales. Leur texture apparraît légèrement bruitée, une marque des processus de convolution. Ce grain est renforcé par la super-résolution. De nouvelles couleurs apparaissent (du orange, du bleu clair, du beige) ainsi que des dégradés, mais tous les mélanges possibles ne sont sont pas visibles (le bleu et le jaune originaux auraient pû donner du vert, ce qui n'a jamais été observé dans nos entraînements). Ces « innovations esthétiques » sont inhérentes à la forme et aux propriétés du réseau. Pour autant elles préservent des qualités dont le rapprochement avec les images d'origine est évident (verticalité, horizontalité, couleurs primaires, épaisseurs moyennes, ...).
 
 ![image\_0\_00](https://user-images.githubusercontent.com/103901906/177868869-e3375d52-a76c-4ecc-9f12-1cf25d79e345.png) ![image\_39\_00](https://user-images.githubusercontent.com/103901906/177869223-8f200f12-21a9-4187-a36a-fd495b5e185f.png) ![image\_40\_00](https://user-images.githubusercontent.com/103901906/177869230-faa33f57-f0f3-4f3a-b70b-552fc22f6b82.png) ![image\_47\_01](https://user-images.githubusercontent.com/103901906/177869257-728d5fd4-2fc4-4b77-84ec-822620a7bbef.png) ![image\_16\_00](https://user-images.githubusercontent.com/103901906/177869431-e225bcbe-8788-4d3b-bbb6-e09d68466b80.png) ![image\_0\_01](https://user-images.githubusercontent.com/103901906/177869460-96cbca56-69e7-48df-a570-9a0904b2825e.png)
 
-D'un point de vue esthétique, ces observations sont très intéressantes, de même que les résultats obtenus par interpolation et les animations créées. Des modifications sur notre dataset (couleurs, géométries, répartitions en probabilités...) pourraient donner d'autres résultats intéressants, de même que d'autres datasets synthétiques que nous engageons désormais vivement l'utilisateur à créer et utiliser !
+Le rapport entre entre les premières images, celle des données d'entraînement et les secondes – les images générées par le modèle pose un certain nombre de questions sur la nature des images numériques, entre réprésentation et abstraction, entre originalité et reconstruction. L'espace latent du modèle de deep learning ouvre une voie pour formuler ces questions et explorer ce rapport par le travail de l'image en mouvement. 
 
-## Ressources
+## Références
 
-Basé sur [davidADSP/GDL\_code](https://github.com/davidADSP/GDL\_code)\
-Forked depuis [leogenot/DeepDrawing](https://github.com/leogenot/DeepDrawing)
+David Foster, *Generative Deep Learning: Teaching Machines to Paint, Write, Compose, and Play*, 2019. Code [(https://github.com/davidADSP/GDL\_code)](https://github.com/davidADSP/GDL\_code)
 
-* [_Generative Deep Learning: Teaching Machines to Paint, Write, Compose, and Play,_ David Foster](https://www.amazon.fr/Generative-Deep-Learning-Teaching-Machines/dp/1492041947)
-* [Keras](https://keras.io/api/)
-* [Tensorflow](https://www.tensorflow.org)
+<!-- François Chollet, *Deep Learning with Python*, Manning Publications, Co. Shelter Island, NY, 2021. Code [https://github.com/fchollet/deep-learning-with-python-notebooks](https://github.com/fchollet/deep-learning-with-python-notebooks) -->

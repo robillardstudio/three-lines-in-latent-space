@@ -5,7 +5,7 @@ Des modèles et des mots
 
 ***Des Modèles et des Mots* est une série de publications dédiée à un ensemble de conversations sur le Computer Art et l'intelligence artificielle éditées par Gaëtan Robillard. La série entend présenter des entretiens avec Margit Rosen, Frieder Nake, Jérôme Nika, Véra Molnar, et Kazushi Mukaiyama. Les textes s'accompagnent d'une série d'images et de la diffusion d'un modèle d'apprentissage profond.**
 
-Edition ESIPE – formation IMAC (Université Gustave Eiffel).  
+Édition ESIPE – formation IMAC (Université Gustave Eiffel).  
 Fr | [En](https://github.com/robillardstudio/three-lines-in-latent-space/blob/main/README_EN.md)
 
 -----------------------------------
@@ -18,11 +18,11 @@ Gaëtan Robillard et Wendy Gervais.
 
 ## Avant-propos
 
-Le code présenté ici soutient un travail exploratoire sur les GANs (Generative Adversarial Networks, ou Réseaux antagonistes génératifs)[^21]. Ces modèles d'architecture sont établis depuis quelques années dans la recherche en informatique, employés pour produire des médias de synthèse à partir de large bases de données d'images. Ce répértoire github est pensé en tant qu'environnement de travail ou *framework*, base à compléter et à explorer, pour quiconque souhaiterait découvrir, façonner ou critiquer ce type de modèle dans un contexte de recherche et d'expérimentation visuelle.
+Le code présenté ici soutient un travail exploratoire sur les GANs (Generative Adversarial Networks, ou Réseaux antagonistes génératifs)[^21]. Ces modèles d'architecture sont établis depuis quelques années dans la recherche en informatique, employés pour produire des médias de synthèse à partir de larges bases de données d'images. Ce répertoire github est pensé en tant qu'environnement de travail ou *framework*, base à compléter et à explorer, pour quiconque souhaiterait découvrir, façonner ou critiquer ce type de modèle dans un contexte de recherche et d'expérimentation visuelle.
 
-Le plus souvent, les GANs sont entraînés à partir de grandes quantités de photographies ou de dessins produits à la main – des données observées dans le réel. Les images sont figuratives. Qu'en est-il de l'abstraction géométrique [^22]? Et qu'en est-il des images déjâ produites par un code ? Ici, nous nous intéressons à des données d'entrainement qui sont des données de synthèse – des données générées par un algorithme et par le truchement de variables aléatoires – en référence au champ du Computer Art[^1]. À ceci s'ajoute une recherche sur l'image en mouvement, telle qu'elle apparaît en potentiel dans l'exploration de l'espace latent[^2] d'un GAN. L'une des perspectives du modèle est bien la création de séquences d'images nouvelles, issues de fonctions de parcour dans l'espace ou la « vision » du modèle entraîné.
+Le plus souvent, les GANs sont entraînés à partir de grandes quantités de photographies ou de dessins produits à la main – des données observées dans le réel. Les images sont figuratives. La philosophie du deep learning génératif semble s'accompagne d'un naturalisme qu'il faut remettre en cause. Qu'en est-il de l'abstraction géométrique[^22]? Et qu'en est-il des images déjà produites par un code ? Nous nous intéressons ici à des données d'entraînement qui sont des données de synthèse – des données générées par un algorithme et par le truchement de variables aléatoires – en référence au champ du Computer Art[^1]. À cette démarche s'ajoute une recherche sur l'image en mouvement, telle qu'elle apparaît en potentiel dans l'exploration de l'espace latent[^2] d'un GAN. L'une des perspectives du modèle est bien la création de séquences d'images nouvelles, issues de fonctions de parcours dans l'espace ou la « vision » du modèle entraîné.
 
-Principalement écrit en Python, décomposé en trois Notebooks distincts : Training, Inference, Inference+ -- le code est commenté de façon à guider le profane à travers les différentes partie du *framework*. Les trois Notebooks présentés plus bas ont été configurés sur [Google Colaboratory](https://colab.research.google.com/drive/12WCzKlR--V8E7HMZHJ89nobVDCknCKmE#scrollTo=C7vmECVpwSZm), (aucune installation requise), et sont également exploitables dans un environnement local [^23].
+Principalement écrit en Python, décomposé en trois Notebooks distincts : Training, Inference, Inference+ – le code est commenté de façon à guider le profane à travers les différentes parties du *framework*. Les trois Notebooks présentés plus bas ont été configurés sur [Google Colaboratory](https://colab.research.google.com/drive/12WCzKlR--V8E7HMZHJ89nobVDCknCKmE#scrollTo=C7vmECVpwSZm), (aucune installation requise), et sont également exploitables dans un environnement local [^23].
 
 D'une façon générale, l'apprentissage profond est un sujet technique complexe – notamment du fait de la très grande dimension des réseaux de neurones (le terme de boîte noire est adapté pour désigner ce problème). Tout en réfléchissant à la lisibilité de ce type de modèle, c'est ici la recherche artistique et pédagogique qui doit être mise en avant. Autant que possible, les aspects visuels de la démarche sont présentés : les données d'entraînement, l'architecture du GAN et les résultats.
 
@@ -36,13 +36,13 @@ D'une façon générale, l'apprentissage profond est un sujet technique complexe
 
 [^23]: Par exemple dans environnement comme Anaconda. Pour l'installation des dépendances, Cf. [Generative Deep Drawing](https://github.com/leogenot/DeepDrawing)
 
-### Fondations
+<!-- ### Fondations
 
 Cette démarche se fonde en partie sur une expérience pédagogique menée avec des étudiants ingénieurs en art et science qui a consisté à étudier le Computer Art à travers des artistes pionniers comme Frieder Nake, Véra Molnar, Georg Nees et Manfred Mohr. Après avoir choisi une oeuvre dans un corpus, les étudiants ont été amenés à penser et re-coder le répèrtoire visuel et algorithmique d'une oeuvre, de façon à constituer des données d'entraînement. Chaque groupe a alors entraîné un modèle avec ces données.
 
 Dans cette démarche, deux processus génératifs sont enchassés : le premier pour générer des données de façon synthétique, le second pour explorer l'espace de représentation (l'espace latent) du réseau une fois celui-ci entrainé. Les données d'entraînements présentées ici – les « Trois lignes » – et leur méthode, sont directement issus des supports ayant guidé les étudiants dans la démarche.
 
-De plus, la base algorithmique de notre modèle a été explorée lors du projet tuteuré _Generative Deep Drawing_ mené par des étudiants de deuxième année de la même formation. Deep Drawing est un projet d'exploration du dessins par l'intéraction avec un GAN (Cf. ressources).
+De plus, la base algorithmique de notre modèle a été explorée lors du projet tuteuré _Generative Deep Drawing_ mené par des étudiants de deuxième année de la même formation. Deep Drawing est un projet d'exploration du dessins par l'intéraction avec un GAN (Cf. ressources). -->
 
 -----------------------------------
 

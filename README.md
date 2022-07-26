@@ -1,7 +1,9 @@
 -----------------------------------
 
-Des modèles et des mots : Trois lignes dans un espace latent
-=============================================================
+Des modèles et des mots
+=========================
+
+## Trois lignes dans un espace latent
 
 ***Des Modèles et des Mots* est une série de publications dédiée à un ensemble de conversations sur le Computer Art et l'intelligence artificielle éditées par Gaëtan Robillard. La série entend présenter des entretiens avec Margit Rosen, Frieder Nake, Jérôme Nika, Véra Molnar, et Kazushi Mukaiyama. Les textes s'accompagnent d'une série d'images et de la diffusion d'un modèle d'apprentissage profond.**
 
@@ -12,7 +14,7 @@ Fr | [En](https://github.com/robillardstudio/three-lines-in-latent-space/blob/ma
 
 **Modèle** : Gaëtan Robillard et Wendy Gervais.
 
-## Avant-propos
+### Avant-propos
 
 Le code présenté ici soutient un travail exploratoire sur les GANs (Generative Adversarial Networks, ou Réseaux antagonistes génératifs)[^21]. Ces modèles d'architecture sont établis depuis quelques années dans la recherche en informatique, employés pour produire des médias de synthèse à partir de larges bases de données d'images. Ce répertoire github est pensé en tant qu'environnement de travail ou *framework*, base à compléter et à explorer, pour quiconque souhaiterait découvrir, façonner ou critiquer ce type de modèle dans un contexte de recherche et d'expérimentation visuelle.
 
@@ -32,7 +34,7 @@ D'une façon générale, l'apprentissage profond est un sujet technique complexe
 
 [^23]: Par exemple dans environnement comme Anaconda. Pour l'installation des dépendances, Cf. [Generative Deep Drawing](https://github.com/leogenot/DeepDrawing)
 
-<!-- ### Fondations
+<!-- #### Fondations
 
 Cette démarche se fonde en partie sur une expérience pédagogique menée avec des étudiants ingénieurs en art et science qui a consisté à étudier le Computer Art à travers des artistes pionniers comme Frieder Nake, Véra Molnar, Georg Nees et Manfred Mohr. Après avoir choisi une oeuvre dans un corpus, les étudiants ont été amenés à penser et re-coder le répèrtoire visuel et algorithmique d'une oeuvre, de façon à constituer des données d'entraînement. Chaque groupe a alors entraîné un modèle avec ces données.
 
@@ -42,7 +44,7 @@ De plus, la base algorithmique de notre modèle a été explorée lors du projet
 
 -----------------------------------
 
-## Données d'entraînement
+### Données d'entraînement
 
 « Trois lignes dans un espace latent » repose sur un ensemble de 10 000 images élémentaires et semblables, appelé « dataset », généré à l'aide d'un code Java écrit et exécuté dans l'environnement de programmation Processing. Le code permettant de générer ces images est disponible dans le [dossier « lines »](https://github.com/kaugrv/models_words/blob/main/lines/lines.pde).
 
@@ -65,7 +67,7 @@ c'est-à-dire 134 millions d'images possibles. En générant 10 000 d'entre elle
 
 [^3]: Les trois premières couleurs sont les couleurs primaires. Leurs valeurs numériques sont tirées du travail de Piet Mondrian (Cf. _Trafalgar Square_, Piet Mondrian, 1943 ; reproduction in _[Museum of Modern Art](https://www.moma.org/collection/works/79879)_).
 
-## Architecture
+### Architecture
 
 Le réseau *Trois lignes* est un GAN de type WGAN-GP, codé en Python à l'aide des librairies _TensorFlow_ et _Keras_.
 
@@ -116,7 +118,7 @@ D'autres dimensions de la convolution pourraient être explorées en fonction de
 
 Ci-dessus : Représentations graphiques des couches constituant le générateur et le critique. Dans cette perspective, on observe l'articulation des couches et leurs dimensions successives, en condénsé (au centre) et en proportions réelles (en haut à droite). Rendu réalisé avec [NN-SVG](https://github.com/alexlenail/NN-SVG).
 
-## Entraînement
+### Entraînement
 
 ------------------------------------
 
@@ -173,7 +175,7 @@ Dans le Notebook Colab, la cellule **Results** permet de télécharger l'ensembl
 
 [^31]: Aussi curieux que cela puisse paraître, le critique n'a en effet de rôle que lors de l'entraînement. Il serait intéressant d'imaginer un nouvel emploi pour le critique qui est alors délaissé. Une piste de réflexion : dans *Artificial Aesthetics: a critical guide to media and design*, Lev Manovich et Emanuele Arielli proposent de considérer à égale importance la fonction analytique et générative d'un réseau de deep learning, la fonction analytique étant attribuée à une fonction d'évaluation esthétique des artefacts culturels.
 
-## Inference
+### Inference
 
 ------------------------------------
 
@@ -201,7 +203,7 @@ En résumé, voici les trois étapes principales pour explorer et interpoler les
 
 On peut ensuite télécharger l'ensemble de ces images au format zip, à l'aide de la dernière cellule de la partie **Function**. La partie **Super Resolution** sera présentée plus bas.
 
-## Inference +
+### Inference +
 
 ------------------------------------
 
@@ -235,7 +237,7 @@ Deux autres fonctionnalités ont été ajoutées pour :
   
 Ces deux fonctionnalité sont pensées pour de futures recherches.
 
-## Super-résolution
+### Super-résolution
 
 ------------------------------------
 
@@ -256,7 +258,7 @@ L'algorithme s'applique sur toutes les images issue de l'interpolation. La derni
 
 [^4]: Voir sur Tfhub : [esrgan by captain-pool](https://tfhub.dev/captain-pool/esrgan-tf2/1)
 
-## Résultats
+### Résultats
 
 Il est intéressant de comparer les images issues des données d'entraînement et les images générées par le modèle. Cette comparaison révèle des différences esthétiques importantes. Si les images d'origine contenaient des lignes nettes, unicolores, et toujours au nombre de 3 (deux horizontales et une verticale), les images générées augmentent ou diminuent ce nombre pour parfois faire apparaître jusqu'à 4 ou 5 lignes. Il y a une nouveauté géométrique et topologique. De plus, se dégage des résultats une impression de profondeur, dûe notamment à des contrastes clairs/obcsurs, pourtant absents des données d'entraînement.
 
@@ -266,7 +268,7 @@ Certaines traces semblent plus lumineuses, évoquant des raies spectrales. Leur 
 
 Le rapport entre entre les premières images, celle des données d'entraînement et les secondes – les images générées par le modèle pose un certain nombre de questions sur la nature des images numériques, entre réprésentation et abstraction, entre originalité et reconstruction. L'espace latent du modèle de deep learning ouvre une voie pour formuler ces questions et explorer ce rapport par le travail de l'image en mouvement. 
 
-## Références
+### Références
 
 David Foster, *Generative Deep Learning: Teaching Machines to Paint, Write, Compose, and Play*, 2019. Code [(https://github.com/davidADSP/GDL\_code)](https://github.com/davidADSP/GDL\_code)
 

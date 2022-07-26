@@ -1,5 +1,3 @@
-_[En](https://github.com/kaugrv/models_words/blob/main/README_EN.md)_
-
 -----------------------------------
 
 Des modèles et des mots
@@ -7,7 +5,8 @@ Des modèles et des mots
 
 **Des Modèles et des Mots est une série de publications dédiée à un ensemble de conversations sur le Computer Art et l'intelligence artificielle éditées par Gaëtan Robillard. La série entend présenter des entretiens avec Margit Rosen, Frieder Nake, Jérôme Nika, Véra Molnar, et Kazushi Mukaiyama. Les textes s'accompagnent d'une série d'images et de la diffusion d'un modèle d'apprentissage profond.**
 
-Edition ESIPE – formation IMAC (Université Gustave Eiffel).
+Edition ESIPE – formation IMAC (Université Gustave Eiffel).  
+[Fr]|[En](https://github.com/robillardstudio/three-lines-in-latent-space/blob/main/README_EN.md)
 
 -----------------------------------
 

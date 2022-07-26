@@ -1,9 +1,7 @@
------------------------------------
-
 Des modèles et des mots
 ========================
 
-**Des Modèles et des Mots est une série de publications dédiée à un ensemble de conversations sur le Computer Art et l'intelligence artificielle éditées par Gaëtan Robillard. La série entend présenter des entretiens avec Margit Rosen, Frieder Nake, Jérôme Nika, Véra Molnar, et Kazushi Mukaiyama. Les textes s'accompagnent d'une série d'images et de la diffusion d'un modèle d'apprentissage profond.**
+***Des Modèles et des Mots* est une série de publications dédiée à un ensemble de conversations sur le Computer Art et l'intelligence artificielle éditées par Gaëtan Robillard. La série entend présenter des entretiens avec Margit Rosen, Frieder Nake, Jérôme Nika, Véra Molnar, et Kazushi Mukaiyama. Les textes s'accompagnent d'une série d'images et de la diffusion d'un modèle d'apprentissage profond.**
 
 Edition ESIPE – formation IMAC (Université Gustave Eiffel).  
 [Fr]|[En](https://github.com/robillardstudio/three-lines-in-latent-space/blob/main/README_EN.md)
@@ -18,7 +16,7 @@ Gaëtan Robillard et Wendy Gervais.
 
 ## Avant-propos
 
-_Des Modèles et des Mots_ s'inscrit dans un projet de recherche en art et en deep learning génératif. Le code présenté ici soutient un travail exploratoire sur les GANs (Generative Adversarial Networks, ou Réseaux antagonistes génératifs)[^21]. Ces modèles d'architecture sont établis depuis quelques années dans la recherche en informatique, employés pour produire des médias de synthèse à partir de large bases de données d'images. Ce répértoire github est pensé en tant qu'environnement de travail ou *framework*, base à compléter et à explorer, pour quiconque souhaiterait découvrir, façonner ou critiquer ce type de modèle dans un contexte de recherche et d'expérimentation visuelle.
+Le code présenté ici soutient un travail exploratoire sur les GANs (Generative Adversarial Networks, ou Réseaux antagonistes génératifs)[^21]. Ces modèles d'architecture sont établis depuis quelques années dans la recherche en informatique, employés pour produire des médias de synthèse à partir de large bases de données d'images. Ce répértoire github est pensé en tant qu'environnement de travail ou *framework*, base à compléter et à explorer, pour quiconque souhaiterait découvrir, façonner ou critiquer ce type de modèle dans un contexte de recherche et d'expérimentation visuelle.
 
 Le plus souvent, les GANs sont entraînés à partir de grandes quantités de photographies ou de dessins produits à la main – des données observées dans le réel. Les images sont figuratives. Qu'en est-il de l'abstraction géométrique [^22]? Et qu'en est-il des images déjâ produites par un code ? Ici, nous nous intéressons à des données d'entrainement qui sont des données de synthèse – des données générées par un algorithme et par le truchement de variables aléatoires – en référence au champ du Computer Art[^1]. À ceci s'ajoute une recherche sur l'image en mouvement, telle qu'elle apparaît en potentiel dans l'exploration de l'espace latent[^2] d'un GAN. L'une des perspectives du modèle est bien la création de séquences d'images nouvelles, issues de fonctions de parcour dans l'espace ou la « vision » du modèle entraîné.
 

@@ -266,7 +266,7 @@ Certaines traces semblent plus lumineuses, évoquant des raies spectrales. Leur 
 
 Le rapport entre les premières images, celle des données d'entraînement et les secondes – les images générées par le modèle – pose un certain nombre de questions sur la nature des images numériques, entre représentation et abstraction, entre originalité et reconstruction. L'espace latent du modèle de deep learning ouvre une voie pour formuler ces questions et explorer ce rapport par le travail de l'image en mouvement.
 
-Recherche : Gaëtan Robillard
+Recherche : Gaëtan Robillard  
 Modèle : Gaëtan Robillard et Wendy Gervais.
 
 ### Références

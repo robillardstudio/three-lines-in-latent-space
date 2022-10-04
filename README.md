@@ -1,18 +1,16 @@
 -----------------------------------
 
-Des modèles et des mots
-========================
+Conversations sur le Computer Art et l'intelligence artificielle
+=================================================================
 
-***Des Modèles et des Mots* est une série de publications dédiée à un ensemble de conversations sur le Computer Art et l'intelligence artificielle éditées par Gaëtan Robillard. La série entend présenter des entretiens avec Margit Rosen, Frieder Nake, Jérôme Nika, Véra Molnar, et Kazushi Mukaiyama. Les textes s'accompagnent d'une série d'images et de la diffusion d'un modèle d'apprentissage profond.**
+Une série de publications dédiée à un ensemble de conversations sur le Computer Art et l'intelligence artificielle, éditées par Gaëtan Robillard. La série entend présenter des entretiens avec Margit Rosen, Frieder Nake, Jérôme Nika, Véra Molnar, et Kazushi Mukaiyama. Les textes s'accompagnent d'une série d'images et de la diffusion d'un modèle d'apprentissage profond pensé pour la publication.
 
 Édition ESIPE – formation IMAC (Université Gustave Eiffel).  
-Fr | [En](https://github.com/robillardstudio/three-lines-in-latent-space/blob/main/README_EN.md)
+<!-- Fr | [En](https://github.com/robillardstudio/three-lines-in-latent-space/blob/main/README_EN.md) -->
 
 -----------------------------------
 
 ## Trois lignes dans un espace latent
-
-Modèle : Gaëtan Robillard et Wendy Gervais.
 
 ### Avant-propos
 
@@ -266,7 +264,9 @@ Certaines traces semblent plus lumineuses, évoquant des raies spectrales. Leur 
 
 ![image\_0\_00](https://user-images.githubusercontent.com/103901906/177868869-e3375d52-a76c-4ecc-9f12-1cf25d79e345.png) ![image\_39\_00](https://user-images.githubusercontent.com/103901906/177869223-8f200f12-21a9-4187-a36a-fd495b5e185f.png) ![image\_40\_00](https://user-images.githubusercontent.com/103901906/177869230-faa33f57-f0f3-4f3a-b70b-552fc22f6b82.png) ![image\_47\_01](https://user-images.githubusercontent.com/103901906/177869257-728d5fd4-2fc4-4b77-84ec-822620a7bbef.png) ![image\_16\_00](https://user-images.githubusercontent.com/103901906/177869431-e225bcbe-8788-4d3b-bbb6-e09d68466b80.png) ![image\_0\_01](https://user-images.githubusercontent.com/103901906/177869460-96cbca56-69e7-48df-a570-9a0904b2825e.png)
 
-Le rapport entre les premières images, celle des données d'entraînement et les secondes – les images générées par le modèle – pose un certain nombre de questions sur la nature des images numériques, entre représentation et abstraction, entre originalité et reconstruction. L'espace latent du modèle de deep learning ouvre une voie pour formuler ces questions et explorer ce rapport par le travail de l'image en mouvement. 
+Le rapport entre les premières images, celle des données d'entraînement et les secondes – les images générées par le modèle – pose un certain nombre de questions sur la nature des images numériques, entre représentation et abstraction, entre originalité et reconstruction. L'espace latent du modèle de deep learning ouvre une voie pour formuler ces questions et explorer ce rapport par le travail de l'image en mouvement.
+
+Modèle : Gaëtan Robillard et Wendy Gervais.
 
 ### Références
 

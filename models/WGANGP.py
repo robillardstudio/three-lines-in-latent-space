@@ -226,13 +226,13 @@ class WGANGP():
 
 
 
-    def get_opti(self, lr):
+    def get_opti(self, learning_rate):
         if self.optimiser == 'adam':
-            opti = Adam(lr=lr, beta_1=0.5)
+            opti = Adam(learning_rate=learning_rate, beta_1=0.5)
         elif self.optimiser == 'rmsprop':
-            opti = RMSprop(lr=lr)
+            opti = RMSprop(learning_rate=learning_rate)
         else:
-            opti = Adam(lr=lr)
+            opti = Adam(learning_rate=learning_rate)
 
         return opti
 

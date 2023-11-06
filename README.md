@@ -1,6 +1,8 @@
 Trois Lignes dans un Espace Latent (TLEL)
 =================================================================
 
+Extrait de la thèse de Gaëtan Robillard, « Des algorithmes à l’œuvre : Naissance du Computer Art et environnements génératifs », Thèse de doctorat : esthétique, sciences et technologies des Arts, Université Paris 8, 2022.
+
 ### Avant-propos
 
 Le code présenté ici soutient un travail exploratoire sur les GANs (Generative Adversarial Networks, ou Réseaux antagonistes génératifs)[^21]. Ces modèles d'architecture sont établis depuis quelques années dans la recherche en informatique, employés pour produire des médias de synthèse à partir de larges bases de données d'images. Ce répertoire github est pensé en tant qu'environnement de travail ou *framework*, base à compléter et à explorer, pour quiconque souhaiterait découvrir, façonner ou critiquer ce type de modèle dans un contexte de recherche et d'expérimentation visuelle.

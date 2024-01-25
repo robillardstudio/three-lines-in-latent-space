@@ -33,6 +33,12 @@ De plus, la base algorithmique de notre modèle a été explorée lors du projet
 
 -----------------------------------
 
+### Notebooks Colab
+
+[Training](https://colab.research.google.com/drive/12WCzKlR--V8E7HMZHJ89nobVDCknCKmE#scrollTo=C7vmECVpwSZm)  
+[Inference](https://colab.research.google.com/drive/13g3rX2zgyxT5YKTZILBrISybmLJ4_pXi)  
+[Inference +](https://colab.research.google.com/drive/14oww73GEQrECNtgaj8iK78jSw8GtHIiE?usp=sharing)
+
 ### Données d'entraînement
 
 « Trois lignes dans un espace latent » repose sur un ensemble de 10 000 images élémentaires et semblables, appelé « dataset », généré à l'aide d'un code Java écrit et exécuté dans l'environnement de programmation Processing. Le code permettant de générer ces images est disponible dans le [dossier « lines »](https://github.com/kaugrv/models_words/blob/main/lines/lines.pde).

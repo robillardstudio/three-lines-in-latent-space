@@ -3,12 +3,6 @@ Trois Lignes dans un Espace Latent (TLEL)
 
 Extrait de la thèse de Gaëtan Robillard, « Des algorithmes à l’œuvre : Naissance du Computer Art et environnements génératifs », Thèse de doctorat : esthétique, sciences et technologies des Arts, Université Paris 8, 2022.
 
-----
-
-Mise à jour : Pour passer à l'inférence directement, un modèle entraîné sur 1200 époques est rendu disponible [ici](/models/generator.h5)
-
-----
-
 ### Avant-propos
 
 Le code présenté ici soutient un travail exploratoire sur les GANs (Generative Adversarial Networks, ou Réseaux antagonistes génératifs)[^21]. Ces modèles d'architecture sont établis depuis quelques années dans la recherche en informatique, employés pour produire des médias de synthèse à partir de larges bases de données d'images. Ce répertoire github est pensé en tant qu'environnement de travail ou *framework*, base à compléter et à explorer, pour quiconque souhaiterait découvrir, façonner ou critiquer ce type de modèle dans un contexte de recherche et d'expérimentation visuelle.
@@ -44,6 +38,10 @@ De plus, la base algorithmique de notre modèle a été explorée lors du projet
 [Training](https://colab.research.google.com/drive/12WCzKlR--V8E7HMZHJ89nobVDCknCKmE#scrollTo=C7vmECVpwSZm)  
 [Inference](https://colab.research.google.com/drive/13g3rX2zgyxT5YKTZILBrISybmLJ4_pXi)  
 [Inference +](https://colab.research.google.com/drive/14oww73GEQrECNtgaj8iK78jSw8GtHIiE?usp=sharing)
+
+*Mise à jour*
+
+Pour passer directement à l'inférence, un modèle entraîné sur 1200 époques est disponible [ici](/models/generator.h5). Utilisez la commande `!wget [url]` pour versement du modèle dans le Colab Inference ou Inference+.
 
 ### Données d'entraînement
 

@@ -33,15 +33,18 @@ De plus, la base algorithmique de notre modèle a été explorée lors du projet
 
 -----------------------------------
 
+*Mise à jour*
+
+- Une version de développement local du notebook "Training" est disponible dans `/notebooks`.
+- Pour passer directement à l'inférence, un modèle entraîné sur 1200 époques est maintenant disponible, voir `/models/generator.h5`.
+
+-----------------------------------
+
 ### Notebooks Colab
 
 [Training](https://colab.research.google.com/drive/12WCzKlR--V8E7HMZHJ89nobVDCknCKmE#scrollTo=C7vmECVpwSZm)  
 [Inference](https://colab.research.google.com/drive/13g3rX2zgyxT5YKTZILBrISybmLJ4_pXi)  
 [Inference +](https://colab.research.google.com/drive/14oww73GEQrECNtgaj8iK78jSw8GtHIiE?usp=sharing)
-
-*Mise à jour*
-
-Pour passer directement à l'inférence, un modèle entraîné sur 1200 époques est disponible [ici](/models/generator.h5). Utilisez la commande `!wget [url]` pour versement du modèle dans le Colab Inference ou Inference+.
 
 ### Données d'entraînement
 
